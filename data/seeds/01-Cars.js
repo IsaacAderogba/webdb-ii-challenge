@@ -10,13 +10,11 @@ const createFakeCar = () => ({
 })
 
 exports.seed = async function(knex) {
-  // Deletes ALL existing entries
   const fakeCars = [];
   const numberOfCars = 20;
 
   for (let i = 0; i < numberOfCars; i++) {
     fakeCars.push(createFakeCar());
   }
-
   await knex('cars').insert(fakeCars);
 };
