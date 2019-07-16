@@ -38,9 +38,10 @@ router.put("/cars/:id", validateId, validateBody, async (req, res, next) => {
   }
 });
 
-router.delete("/cars/:id", validateId, (req, res, next) => {
+router.delete("/cars/:id", validateId, async (req, res, next) => {
   try {
-    res.json({ message: "Delete Car by ID" });
+    await controller.deleteCar(req.params.id);
+    res.status(200).json(req.car);
   } catch (err) {
     next(err);
   }

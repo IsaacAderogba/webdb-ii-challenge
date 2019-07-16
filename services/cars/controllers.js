@@ -12,5 +12,8 @@ module.exports = {
   },
   updateCar: async function(id, car) {
     return await Cars.update(id, car);
+  },
+  deleteCar: async function(id) {
+    return await Cars.remove(id);
   }
 }
