@@ -5,8 +5,8 @@ const { validateId, validateBody } = require("./middleware");
 
 router.get("/cars", async (req, res, next) => {
   try {
-    const car = await controller.getAllCars();
-    res.status(200).json(car);
+    const cars = await controller.getAllCars();
+    res.status(200).json(cars);
   } catch (err) {
     next(err);
   }
@@ -14,16 +14,16 @@ router.get("/cars", async (req, res, next) => {
 
 router.get("/cars/:id", validateId, async (req, res, next) => {
   try {
-    const car = await controller.getCarsById(req.params.id);
-    res.status(200).json(car);
+    res.status(200).json(req.car);
   } catch (err) {
     next(err);
   }
 });
 
-router.post("/cars", validateBody, (req, res, next) => {
+router.post("/cars", validateBody, async (req, res, next) => {
   try {
-    res.json({ message: "Post New Car" });
+    const newCar = await controller.postNewCar(req.newCar);
+    res.status(201).json(newCar);
   } catch (err) {
     next(err);
   }

@@ -6,5 +6,8 @@ module.exports = {
   },
   getCarsById: async function(id) {
     return await Cars.findCarById(id)
+  },
+  postNewCar: async function(car) {
+    return await Cars.insert(car);
   }
 }

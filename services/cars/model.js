@@ -9,5 +9,10 @@ module.exports = {
     return db(TABLE)
       .where({ id })
       .first();
+  },
+  insert: function(car) {
+    return db(TABLE)
+      .insert(car)
+      .then(([id]) => this.findCarById(id));
   }
 };
