@@ -4,16 +4,17 @@ const controller = require('./controllers');
 
 router.get('/cars', async (req, res, next) => {
   try {
-    const accounts = await controller.getAllAccounts();
-    res.status(200).json(accounts);
+    const car = await controller.getAllCars();
+    res.status(200).json(car);
   } catch (err) {
     next(err);
   }
 })
 
-router.get('/cars/:id', (req, res, next) => {
+router.get('/cars/:id', async (req, res, next) => {
   try {
-    res.json({message: "Get Car by ID"})
+    const car = await controller.getCarsById(req.params.id);
+    res.status(200).json(car);
   } catch (err) {
     next(err);
   }
