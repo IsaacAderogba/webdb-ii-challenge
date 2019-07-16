@@ -14,5 +14,11 @@ module.exports = {
     return db(TABLE)
       .insert(car)
       .then(([id]) => this.findCarById(id));
+  },
+  update: function(id, car) {
+    return db(TABLE)
+      .where({ id })
+      .update(car)
+      .then(count => (count > 0 ? this.findCarById(id) : null));
   }
 };

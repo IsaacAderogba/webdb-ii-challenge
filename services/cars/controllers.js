@@ -9,5 +9,8 @@ module.exports = {
   },
   postNewCar: async function(car) {
     return await Cars.insert(car);
+  },
+  updateCar: async function(id, car) {
+    return await Cars.update(id, car);
   }
 }

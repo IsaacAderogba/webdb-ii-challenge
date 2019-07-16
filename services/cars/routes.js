@@ -29,9 +29,10 @@ router.post("/cars", validateBody, async (req, res, next) => {
   }
 });
 
-router.put("/cars/:id", validateId, validateBody, (req, res, next) => {
+router.put("/cars/:id", validateId, validateBody, async (req, res, next) => {
   try {
-    res.json({ message: "Update Car by ID" });
+    const updatedCar = await controller.updateCar(req.params.id, req.newCar);
+    res.status(200).json(updatedCar);
   } catch (err) {
     next(err);
   }
